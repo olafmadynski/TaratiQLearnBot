@@ -1,0 +1,23 @@
+      <div className="theme-selector">
+        <h3>Select Theme</h3>
+        <div className="theme-options">
+         <button
+            className={theme === 'classic' ? 'active' : ''}
+            onClick={() => setTheme('classic')}
+            >
+          Classic
+         </button>
+          <button
+            className={theme === 'dark' ? 'active' : ''}
+            onClick={() => setTheme('dark')}
+            >
+          Dark
+         </button>
+          <button
+            className={theme === 'neon' ? 'active' : ''}
+            onClick={() => setTheme('neon')}
+            >
+          Neon
+         </button>
+        </div>
+      </div>

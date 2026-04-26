@@ -1,0 +1,75 @@
+.piece {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.piece.black {
+  background-color: #333;
+  border: 2px solid #111;
+}
+
+.piece.white {
+  background-color: #fff;
+  border: 2px solid #ddd;
+}
+
+.piece.selected {
+  box-shadow: 0 0 0 4px rgba(0, 221, 255, 0.7);
+} 
+
+.piece.normal {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.piece.rock {
+background-color: gold; 
+border: 6px solid gold; 
+box-shadow: 0 0 20px gold; 
+color: gold; 
+font-size: 1.2em; 
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.piece.blackrock {
+background-color: #333; 
+border: 6px solid gold; 
+box-shadow: 0 0 20px gold; 
+color: #fff; 
+font-size: 1.2em; 
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.piece.whiterock {
+background-color: #fff;
+border: 6px solid gold; 
+box-shadow: 0 0 20px gold; 
+color: #333; 
+font-size: 1.2em; 
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+}

@@ -1,0 +1,239 @@
+.game-info {
+  margin: 0;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-left: 2px solid #818486;
+  border-top: 2px solid #818486;
+  border-right: 2px solid #7b7c7d;
+  border-bottom: 2px solid #7b7c7d;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: left;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.game-status {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.game-status.game-over {
+  color: gold;
+  animation: pulse 1s infinite;
+}
+
+.current-player {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.player-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.player-indicator.black {
+  background-color: #333;
+  border: 2px solid #111;
+}
+
+.player-indicator.white {
+  background-color: #fff;
+  border: 2px solid #ddd;
+}
+
+/* History Record Control Button */
+.history-controls {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.history-toggle {
+  padding: 8px 12px;
+  background-color: #e7aa26fb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  transition: background-color 0.2s;
+}
+
+.history-toggle:hover {
+  background-color: #c09436fb;
+}
+
+/* Move history record style */
+.move-history {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.move-history h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.move-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.move-item {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.move-item:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.move-item:hover {
+  background-color: #e8f4fc;
+}
+
+.reset-button {
+  padding: 8px 12px;
+  background-color: #28d11f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  transition: background-color 0.2s;
+}
+
+.reset-button:hover {
+  background-color: #37b830;
+}
+
+.undo-button {
+  padding: 8px 8px;
+  background-color: #e82c2c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  transition: background-color 0.2s;
+}
+
+.undo-button:hover {
+  background-color: #b73f3f;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+} 
+
+.controls-container {
+  display: flex;
+  align-items: center; /* Center align vertically */
+  gap: 5px; /* Leave a space between "toggle" and "button" */
+}
+
+.small-button-undo {
+  font-size: 14px;          
+  padding: 6px 12px;       
+  line-height: 1.5;        
+  min-width: 100px;        
+  border-radius: 4px;      
+  background-color: #eb2e10; 
+  color: white;            
+  border: none;            
+  cursor: pointer;         
+  transition: background-color 0.3s; 
+}
+
+.small-button-undo:hover {
+   background-color: #cc4a36;
+}
+
+
+/* ToggleCSS.css */
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.toggle-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-text {
+  font-size: 15px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+input[type="checkbox"] {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #3b3d3e;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+}
+
+input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+
+

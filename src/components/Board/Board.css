@@ -1,0 +1,202 @@
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: visible;
+}
+
+/* Chessboard node - Do not use any transition effects. */
+.board-node {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+@keyframes selected-animation {
+0%  {
+    box-shadow: 0 0 0 3px rgba(214, 216, 216, 0.7);
+   }
+50% {
+    box-shadow: 0 0 0 6px rgba(187, 190, 190, 0.9);
+    }
+100% {
+      box-shadow: 0 0 0 3px rgba(144, 147, 147, 0.9);
+    }
+}
+
+/* Selected state - Only change the shadows */
+/* box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.7); */
+.board-node.selected {
+  box-shadow: 0 0 0 3px rgba(207, 211, 211, 0.7);
+  z-index: 10;
+  animation: selected-animation 1.5s infinite ease-in-out;
+}
+
+.connection-line {
+  position: absolute;
+  height: 3px;
+  background-color: #999;
+  z-index: 1;
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+.node-label {
+  position: absolute;
+  font-size: 10px;
+  font-weight: bold;
+  bottom: -18px;
+  color: #333;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Chess piece container - Fixed size and position */
+.piece-container-old {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.piece-container {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  border-radius: 50%;
+  pointer-events: auto;               /* <-- To be able to trigger the hover effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Transition and Performance Tips */
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms;
+  will-change: transform, box-shadow;
+  background: #fff; /* Optional: Adjust according to the design */
+}
+
+/* Hover style: Lift + Zoom + Shadow, and activate a slight floating animation */
+.piece-container:hover {
+  transform: translate(-50%, -60%) scale(1.12);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+  animation: piece-hover-float 900ms ease-in-out infinite alternate;
+}
+
+/* The back-and-forth movement (small up-and-down movement) during hovering */
+@keyframes piece-hover-float {
+  from { transform: translate(-50%, -60%) scale(1.12); }
+  to   { transform: translate(-50%, -64%) scale(1.12); }
+}
+
+/* Fixed position layout */
+
+/* The first layer (center)：A1 */
+[data-position="A1"] { top: 50%; left: 50%; }
+
+/* Layer 2 (Inner Ring):：B1-B6 - Arrange the hexagon around A1 in a clockwise direction */
+[data-position="B1"] { top: 65%; left: 50%; } /* Down */
+[data-position="B2"] { top: 58%; left: 62%; } /* Right Down */
+[data-position="B3"] { top: 42%; left: 62%; } /* Right Up */
+[data-position="B4"] { top: 35%; left: 50%; } /* Up */
+[data-position="B5"] { top: 42%; left: 38%; } /* Left Up */
+[data-position="B6"] { top: 58%; left: 38%; } /* Left Down */
+
+/* Layer 3 (Outer Ring)）：C1-C12 - Peripheral dodecagon */
+[data-position="C1"] { top: 80%; left: 60%; } /* Bottom right side */
+[data-position="C2"] { top: 80%; left: 40%; } /* Bottom left side */
+[data-position="C3"] { top: 70%; left: 27%; } /* Left Down */
+[data-position="C4"] { top: 58%; left: 20%; } /* Left, center, bottom */
+[data-position="C5"] { top: 42%; left: 20%; } /* Left, center, upper left */
+[data-position="C6"] { top: 30%; left: 27%; } /* Left Up */
+[data-position="C7"] { top: 20%; left: 40%; } /* Top left side */
+[data-position="C8"] { top: 20%; left: 60%; } /* Top right side */
+[data-position="C9"] { top: 30%; left: 73%; } /* Right Up */
+[data-position="C10"] { top: 42%; left: 80%; } /* Right upper middle section */
+[data-position="C11"] { top: 58%; left: 80%; } /* Right, middle, bottom */
+[data-position="C12"] { top: 70%; left: 73%; } /* Right Down */
+
+/* Layer 4 (Endpoint)：D1-D4 - Peripheral endpoint */
+[data-position="D1"] { top: 93%; left: 60%; } /* Bottom right - White piece, vertically aligned with C1 */
+[data-position="D2"] { top: 93%; left: 40%; } /* Bottom left - White piece, vertically aligned with C2 */
+[data-position="D3"] { top: 7%; left: 40%; }  /* Top left - Black piece, vertically aligned with C7 */
+[data-position="D4"] { top: 7%; left: 60%; }  /* Top right - Black piece, vertically aligned with C8 */
+
+/* Unified node gray */
+[data-position^="A"],
+[data-position^="B"],
+[data-position^="C"],
+[data-position^="D"] { 
+  background-color: #d0d0d0; 
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .board-container {
+    padding: 15px;
+  }
+  
+  .board-node {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .piece-container {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .node-label {
+    font-size: 9px;
+    bottom: -16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .board-node {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .piece-container {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .node-label {
+    font-size: 8px;
+    bottom: -14px;
+  }
+} 
